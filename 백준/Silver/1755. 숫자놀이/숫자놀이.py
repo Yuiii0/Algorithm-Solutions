@@ -28,6 +28,6 @@ c=0
 for num in nums:
     c+=1
     print(num[0], end=' ')
-    if c>=10:
+    if c%10==0:
         print()
-        c=0
+
