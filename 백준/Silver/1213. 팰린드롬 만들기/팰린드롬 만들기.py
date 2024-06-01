@@ -1,37 +1,58 @@
-# 팰린드롬 만들기
-# https://www.acmicpc.net/problem/1213
-
-# 팰린드롬이 되기 위해선 단어 길이가 짝수일 경우 홀수 개인 알파벳이 있으면 안됨.
-# 단어가 홀수 길이면 홀수 개인 알파벳이 하나 있어도됨
-
-from collections import Counter
 import sys
+from collections import Counter
+words = sorted(list(sys.stdin.readline().strip()))
+word_counter=Counter(words)
 
-word = input()
-word_list = list(word)
-word_list.sort()
 
-word_count = Counter(word_list)
+# 홀수 -> 홀수 1개까지 가능
+# 짝수 -> 홀수 불가능
+odd_char=''
+odd_cnt=0
+p=True
 
-odd_alphabet_count = 0
-odd_alphabet = ''
-for alphabet in word_count:
-    if word_count[alphabet] % 2 == 1:
-        odd_alphabet_count += 1
-        odd_alphabet += alphabet
-    if odd_alphabet_count > 1:
-        print("I'm Sorry Hansoo")
-        sys.exit()
+#단어 조합 빈도수/2만큼 
+temp=''
+result=''
+for char,cnt in word_counter.items():
+    #홀수 발견
+    if cnt%2==1:
+        #짝수: 불가능
+        if len(words)%2==0:
+            print("I'm Sorry Hansoo")
+            p=False
+            break
+        else:
+            if odd_cnt>=1:
+                print("I'm Sorry Hansoo")
+                p=False
+                break
+            else:
+                odd_char+=char
+                odd_cnt+=1
+                word_counter[char]-=1 #가운데 출력할 글자이기 때문
 
-answer = ''
+if p:
+    # left 출력
+    for word in word_counter.keys():
+        temp+=word*(int(word_counter[word])//2)
+    result+=temp    
+    
+    
+    # 가운데 출력
+    result+=odd_char
+    
+    #right
+    result+=temp[::-1]
+    
+    print(result)
 
-for i in range(0, len(word), 2):
-    if word_count[word_list[i]] % 2 == 1:
-        word_count[word_list[i]] -= 1
-    else:
-        answer += word_list[i]
 
-tmp = answer[::-1]
-answer += odd_alphabet
-answer += tmp
-print(answer)
+    
+
+    
+
+        
+
+
+    
+        
