@@ -1,27 +1,44 @@
+# prev_last=cur_first
+# 중복x -> set이용
+# A의 단어리스트 후보에서 ? 찾기
+
 import sys
 n = int(sys.stdin.readline())
-
-lines = sys.stdin.read().splitlines()
+lines=sys.stdin.read().splitlines()
 
 # 기록
-records = lines[:n]
-# 단어 리스트 개수
-c = int(lines[n])
+records=lines[:n]
+#단어 리스트 개수
+c=int(lines[n])
 # 단어 리스트 
-words = lines[n + 1:n + 1 + c]
+words=lines[n+1:n+1+c]
 
-if n == 1:
+# 중복 확인
+# 앞뒤 단어 일치 확인
+
+#기록이 1개라면 바로 정답 출력
+if n==1:
     print(words[0])
 else:
-    # '?'의 인덱스 찾기
-    idx = records.index('?')
+    idx=records.index('?')
+    
+    #앞뒤 단어 추출
+    prev=records[idx-1] if idx>0 else ''
+    next=records[idx+1] if idx+1<n else ''
 
-    prev = records[idx - 1] if idx > 0 else ''
-    next = records[idx + 1] if idx < n - 1 else ''
-
-    for word in words:
+    for i,word in enumerate(words):
         if word in records:
-            continue  # 다음 단어로
+            continue #다음단어로
+
+
         if (not prev or word.startswith(prev[-1])) and (not next or word.endswith(next[0])):
             print(word)
-            break  # 조건을 만족하는 단어를 찾으면 종료
+        #prev,next가 빈문자열일 경우 무시
+
+
+
+
+
+
+
+
