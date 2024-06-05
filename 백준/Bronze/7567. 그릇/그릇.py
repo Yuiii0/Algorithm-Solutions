@@ -8,13 +8,8 @@ bowls=input().rstrip()
 result=10
 
 for i in range(1,len(bowls)):
-    #이전 그릇과 방향 비교
-    if bowls[i-1]==bowls[i]:
-        result+=5 # 같은방향+5
-    else:
-        result+=10
+    #이전 그릇과 방향 비교 
+    result+=5 if bowls[i-1]==bowls[i] else 10
 
 print(result)
-    
-
     
