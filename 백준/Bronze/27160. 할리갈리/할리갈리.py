@@ -1,12 +1,15 @@
-from collections import Counter
 import sys
-input = sys.stdin.readline
-n=int(input())
+from collections import defaultdict
 
-fruits_counter=Counter()
+input = sys.stdin.readline
+
+n = int(input())
+fruits = defaultdict(int)
+valid=True
 
 for _ in range(n):
-    fruit,num=input().split()
-    fruits_counter[fruit]+=int(num)
+    fruit, num = input().strip().split()
+    fruits[fruit] += int(num)
+   
 
-print('YES' if 5 in fruits_counter.values() else 'NO')
+print('YES' if 5 in fruits.values() else 'NO')
