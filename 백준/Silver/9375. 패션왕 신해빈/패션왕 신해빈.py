@@ -13,7 +13,7 @@ for _ in range(n):
     dic = {}
     m = int(input())
     
-    # If there are no clothes, print 0 and move to the next test case
+    #의상이 없는 경우 
     if m == 0:
         print(0)
         continue
