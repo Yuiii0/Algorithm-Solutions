@@ -1,14 +1,12 @@
 from collections import Counter
-
+import sys
+input = sys.stdin.readline
 n=int(input())
 
-fruits_dict={}
+fruits_counter=Counter()
 
-#순회하면서 카운터
-for i in range(n):
+for _ in range(n):
     fruit,num=input().split()
+    fruits_counter[fruit]+=int(num)
 
-    fruits_dict[fruit]=fruits_dict.get(fruit,0)+int(num)
-
-#5가 되면 YES
-print('YES' if 5 in fruits_dict.values() else 'NO')
+print('YES' if 5 in fruits_counter.values() else 'NO')
