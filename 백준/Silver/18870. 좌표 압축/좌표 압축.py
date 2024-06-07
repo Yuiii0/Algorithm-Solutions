@@ -1,20 +1,30 @@
 import sys
-input = sys.stdin.readline
+
+def create_dict(num_set):
+    dict = {}
+    for i, num in enumerate(sorted(list(num_set))):
+        if not num in dict:
+            dict[num] = i
+    return dict
+#
+def find_idx(num_list,dict):
+    result=[str(dict[num]) for num in num_list ]
+    return ' '.join(result)
 
 
-n=int(input())
+def read_input():
+    input = sys.stdin.readline
+    n = int(input())
+    num_list = list(map(int, input().split()))
+    num_set = set(num_list)
+    return num_list,num_set
 
-# 오름차순으로 정렬해 idx 값을 저장 
-# 순회하면서 key값으로 idx 찾기
+def main():
+    num_list,num_set=read_input()
+    dict=create_dict(num_set)
+    result=find_idx(num_list,dict)
+    print(result)
 
-#dict {0: -10, 1: -9, 2: 2, 3: 4, 4: 4}
-num_list=list(map(int,input().split()))
-num_set=set(num_list)
 
-dict={}
-for i,num in enumerate(sorted(list(num_set))):
-    if not num in dict:
-        dict[num]=i
-
-for num in num_list:
-    print(dict[num],end=' ')
+if __name__ == "__main__":
+    main()
