@@ -1,14 +1,15 @@
-from collections import Counter
+import sys
+from collections import defaultdict
 
-n=int(input())
+input = sys.stdin.readline
 
-fruits_dict={}
+n = int(input())
+fruits = defaultdict(int)
+valid=True
 
-#순회하면서 카운터
-for i in range(n):
-    fruit,num=input().split()
+for _ in range(n):
+    fruit, num = input().strip().split()
+    fruits[fruit] += int(num)
+   
 
-    fruits_dict[fruit]=fruits_dict.get(fruit,0)+int(num)
-
-#5가 되면 YES
-print('YES' if 5 in fruits_dict.values() else 'NO')
+print('YES' if 5 in fruits.values() else 'NO')
