@@ -1,20 +1,11 @@
 from collections import defaultdict
 n=int(input())
 
-# 중복 제거를 위해 set
-words=defaultdict(set)
+words={input() for _ in range(n)}
+words=list(words)
 
-for _ in range(n):
-    word=input()
-    words[len(word)].add(word)
+# 길이순 -> 사전순 (튜플 사용)
+words.sort(key=lambda x:(len(x),x)) # 길이 순으로 정렬, 길이가 같다면 사전 순으로 정렬
 
-
-keys=list(words.keys())
-keys.sort()
-
-for key in keys:
-    word_list=list(words[key])
-    word_list.sort()
-
-    for w in word_list:
-        print(w)
+for word in words:
+    print(word)
