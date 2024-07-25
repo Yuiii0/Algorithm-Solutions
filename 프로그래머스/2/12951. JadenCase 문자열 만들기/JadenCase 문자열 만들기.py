@@ -1,9 +1,8 @@
 def solution(s):
-    s=s.split(' ')
+    words=s.split(' ')
+    capitalized_words = [word.capitalize() for word in words]
     
-    for i in range(len(s)):
-        s[i]=s[i].capitalize()
-    answer=' '.join(s)
-    return answer
+    # 수정된 리스트 반환
+    return ' '.join(capitalized_words)
     
     
