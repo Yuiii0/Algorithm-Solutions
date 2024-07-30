@@ -24,8 +24,8 @@ def solution(scoville, K):
     # 가장 안매운 스코빌이 K이상인지 확인
     if scoville[0]>=K:
         return count
-    else:
-        return -1
+    
+    return -1
 
 
 
