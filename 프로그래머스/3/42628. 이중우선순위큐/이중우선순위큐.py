@@ -1,41 +1,35 @@
-
 import heapq
 
+
 def solution(operations):
-    heap=[]
+    heap = []
     for operation in operations:
-        [inst,value]=operation.split(' ')
-        if inst=='I':
-            # heap삽입
-            heapq.heappush(heap,int(value))
+        [inst, value] = operation.split(' ')
+        value = int(value)
+        if inst == 'I':
+            # heap 삽입
+            heapq.heappush(heap, value)
 
-        else:
-            if value=='1':
-                # maxHeap으로 만들기?
-                if heap:
-                    for i in range(len(heap)):
-                        heap[i]=-heap[i]
-
-                    heapq.heapify(heap)
-
-                    heapq.heappop(heap)
-                    # 다시 돌려놓기
-                    for i in range(len(heap)):
-                        heap[i] = -heap[i]
-                    heapq.heapify(heap)
-
-
-
+        elif heap:
+            if value > 0:
+                # maxHeap을 생성하기 위해 부호 반대로 변경
+                for i in range(len(heap)):
+                    heap[i] = -heap[i]
+                heapq.heapify(heap)
+                heapq.heappop(heap)
+                # 다시 부호 돌려놓기
+                for i in range(len(heap)):
+                    heap[i] = -heap[i]
+                heapq.heapify(heap)
             else:
-                if heap:
-                    heapq.heappop(heap)
+                heapq.heappop(heap)
 
-    if heap:
-        heap_min = heap[0]
-        heap_max = sorted(heap, reverse=True)[0]
-        return [heap_max, heap_min]
-    else:
-        return [0,0]
+
+    if not heap:
+        return [0, 0]
+
+    return [max(heap), heap[0]]
+
 
 
 
