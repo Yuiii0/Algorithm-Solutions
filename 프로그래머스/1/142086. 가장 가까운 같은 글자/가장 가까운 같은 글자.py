@@ -1,11 +1,14 @@
 def solution(s):
-    answer=[]
-    dic = dict()
-    for i in range(len(s)):
-        if s[i] not in dic:
-            answer.append(-1)
+    answer = []
+    char_dict={}
+    for i,char in enumerate(s):
+        if char in char_dict:
+            answer.append(i-char_dict[char])
         else:
-            answer.append(i-dic[s[i]])
-        dic[s[i]]=i
-    return answer
+            answer.append(-1)
+        char_dict[char]=i
 
+
+
+
+    return answer
