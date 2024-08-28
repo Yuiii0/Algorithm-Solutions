@@ -17,8 +17,6 @@ def dfs(numbers,target,cur_idx,cur_total):
 
 def solution(numbers, target):
     global answer
-    answer=0
-
     dfs(numbers,target,0,0)
 
     return answer
